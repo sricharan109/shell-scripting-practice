@@ -1,4 +1,4 @@
 #!/bin/bash
-echo "hello-world"
-person1=suresh
-echo "ramesh $person1"
+echo "enter ur name"
+read USER_NAME
+echo "user name is $USER_NAME"
