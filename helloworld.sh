@@ -1,7 +1,7 @@
 #!/bin/bash
 id=$(id -u)
-FOLDER= "/var/log/shell_script"
-FILE= "/var/log/shell_script/$0.log"
+FOLDER="/var/log/shell_script"
+FILE="/var/log/shell_script/$0.log"
 
 if [ $id -ne 0 ]; then
     echo "Try with root user"
