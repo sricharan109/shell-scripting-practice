@@ -12,12 +12,20 @@ mkdir -p $FOLDER
 
 ANSWER() {
     if [ $1 -ne 0 ]; then
-        echo "$2 .... FAILED"
+        echo "$2 .... FAILED" | tee -a $FILE
         exit 1
     else
-        echo "$2 .... SUCCESS"
+        echo "$2 .... SUCCESS" | tee -a $FILE
     fi
 }
-
-dnf install nginx -y &>> $FILE
-ANSWER $? "Installing nginx"
+for package in $@
+do
+   dnf list installed $package  &>>$FILE
+   if [ $? -ne 0]; then
+           echo "$package not installed, installing now:"
+           dnf install $package -y &>>$FILE
+           ANSWER $? "Installing $package"
+   else 
+           echo "$package already installed"
+   fi
+done
