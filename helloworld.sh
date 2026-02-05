@@ -1,8 +1,17 @@
 #!/bin/bash
-time = $(date)
-echo "$time at this we played"
-time1= $(date +%s)
-sleep 10
-time2= $(date +%s)
-total= $(($time2-$time1))
-echo "the diff is $total"
+id=$(id -u)
+if [ id -ne 0]; then
+            echo "try with root user"
+            exit 1
+fi
+ANSER(){
+      if [ $1 -ne 0 ]; then
+             echo "$2 Installing..........FAILED"
+             exit 1
+      else
+             echo "Installing ...Success"
+      fi
+
+      }
+dhf install nginx
+ANSER $? "Installing nginx"
