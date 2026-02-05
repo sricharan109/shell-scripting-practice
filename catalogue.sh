@@ -13,10 +13,10 @@ mkdir -p $FOLDER
 
 VALIDATE(){
     if [ $1 -ne 0]; then
-     echo -e "$2 . FAILURE " | tee -a $LOGS_FILE
+     echo -e "$2  FAILURE " | tee -a $LOGS_FILE
         exit 1
     else
-        echo -e "$2 . SUCCESS " | tee -a $LOGS_FILE
+        echo -e "$2 SUCCESS " | tee -a $LOGS_FILE
     fi
 }
 mkdir -p $FOLDER
@@ -70,7 +70,7 @@ if [ $INDEX -le 0 ]; then
     mongosh --host $MONGODB_HOST </app/db/master-data.js
     VALIDATE $? "Loading products"
 else
-    echo -e "Products already loaded ... $Y SKIPPING $N"
+    echo -e "Products already loaded ... SKIPPING "
 fi
 
 systemctl restart catalogue
